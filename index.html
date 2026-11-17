@@ -58,6 +58,14 @@ h1{font-size:1.2rem;font-weight:800;margin:0}
 .tree .fiche li::before,.tree .fiche li::after{display:none}
 .fiche.appris{width:300px}
 .fiche a{color:var(--fg);font-weight:700}
+.fiche.bloc{width:auto;display:grid;grid-template-columns:270px 300px 330px 270px;gap:22px;padding:16px 20px;font-size:.84rem;line-height:1.4;white-space:normal}
+.fiche.bloc>.col>b{font-size:.95rem;margin-bottom:6px}
+.fiche.bloc table{border-collapse:collapse;width:100%;font-size:.8rem}
+.fiche.bloc th{text-align:left;font-weight:700;color:var(--mute);border-bottom:1px solid var(--line);padding:3px 4px}
+.fiche.bloc td{padding:4px;border-bottom:1px solid var(--line);vertical-align:top}
+.fiche.bloc .r{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.fiche.bloc em{font-style:normal;font-weight:800;color:var(--mj)}
+.fiche.bloc .note{margin:6px 0 0;color:var(--mute);font-size:.74rem}
 .fiche.grande{width:auto;display:grid;grid-template-columns:repeat(3,250px);gap:18px;padding:14px 18px;font-size:.88rem}
 .data{display:block;font-size:.78rem;font-weight:500;color:var(--mute);margin-top:3px}
 .data b{color:var(--fg);font-weight:800}
@@ -90,16 +98,25 @@ a.n.clic:hover,a.n.clic:focus-visible{border-color:var(--mj);outline:none}
   </ul></li>
   <li><span class="n b1" id="ads-mj">Ads</span><ul>
     <li><span class="n b2">Candiboost</span><ul>
-      <li><div class="fiche grande"><div class="col"><b>Personas</b><ul>
-        <li>Premier CDI insatisfait (39 %)</li><li>Étudiant en alternance (30 %)</li><li>Manager polyvalent (27 %)</li>
-        <li>Senior commerce / RH / marketing (19 %)</li><li>Senior finance (14 %)</li><li>Senior tech / CTO (9 %)</li>
-        <li>Effort : 70 / 20 / 10</li></ul></div>
-      <div class="col"><b>Angles</b><ul>
-        <li>Tu utilises les jobboards (winner)</li><li>Tu postules aux mauvaises personnes, RH (en dépense)</li>
-        <li>Tu postules dans le vide, 0 réponse</li><li>À tester : marché caché, trop tard, filtre ATS, discrimination âge / origine</li></ul></div>
-      <div class="col"><b>Douleurs</b><ul>
-        <li>Le silence après l'effort</li><li>Bouger sans griller sa boîte</li><li>Pas le temps de chercher</li>
-        <li>La promo qui n'arrive jamais</li><li>Les potes bougent, pas moi</li></ul></div></div></li>
+      <li><div class="fiche bloc"><div class="col"><b>Contexte</b><ul>
+        <li><strong>Le produit</strong> : Candiboost envoie tes candidatures à ta place, direct au décideur, dans les boîtes qui recrutent avant de publier l'offre</li>
+        <li><strong>Le prix</strong> : abonnement autour de 20 €/mois ; 1er paiement moyen 40 € ; un abonné rapporte 85 à 100 € sur 12 mois</li>
+        <li><strong>Nos meilleurs clients</strong> : le premier CDI insatisfait (39 % des clients, le plus rentable : prêt à payer pour s'en sortir), puis l'alternant (30 %) et le manager (27 %)</li>
+        <li><strong>L'angle qui gagne</strong> : « tu utilises les jobboards » → marché caché, postuler avant la publication, direct au décideur</li>
+        <li><strong>La barre</strong> : moins de 40 € par achat (moyenne CBO France : 39 €)</li></ul></div>
+      <div class="col"><b>Ce qu'on a testé · 90 jours</b>
+        <table><tr><th>Format</th><th class="r">Dépensé</th><th class="r">€/achat</th></tr>
+        <tr><td>Spark des créateurs (37)</td><td class="r">48,2 k€</td><td class="r">41 €</td></tr><tr><td>Thibaut, fondateur, face caméra (9)</td><td class="r">26,4 k€</td><td class="r"><em>34 €</em></td></tr><tr><td>Statiques mèmes / comparatifs (25)</td><td class="r">25,5 k€</td><td class="r">39 €</td></tr><tr><td>Acteurs UGC : persona, seniors, micro-trottoir (15)</td><td class="r">6,8 k€</td><td class="r">46 €</td></tr><tr><td>Démos écran, faux DM, cartoon (13)</td><td class="r">4,0 k€</td><td class="r">36 €</td></tr><tr><td>Yohann, homme invité, format podcast (1)</td><td class="r">1,5 k€</td><td class="r"><em>32 €</em></td></tr></table>
+        <p class="note">CBO France, 112 k€ au total, achats attribués par Meta</p></div>
+      <div class="col"><b>Ce qui marche</b>
+        <table><tr><th>Pub</th><th class="r">Dépensé</th><th class="r">€/achat</th></tr>
+        <tr><td>Thibaut en studio podcast : « Arrête de postuler aux offres de cette façon », puis démo de l'outil</td><td class="r">13,3 k€</td><td class="r">32 €</td></tr><tr><td>Statique avant / après « Avec LinkedIn / Avec Candiboost » (illustré)</td><td class="r">7,2 k€</td><td class="r">38 €</td></tr><tr><td>Thibaut en Q/R : « Je postule à une offre à 300 candidatures ? »</td><td class="r">4,5 k€</td><td class="r">36 €</td></tr><tr><td>Mème wojak LinkedIn vs Candiboost</td><td class="r">4,2 k€</td><td class="r">37 €</td></tr><tr><td>Faux WhatsApp « Maman, le chômage c'est fini »</td><td class="r">3,9 k€</td><td class="r">38 €</td></tr><tr><td>Micro-trottoir : « ma sœur dans le recrutement m'a parlé de… »</td><td class="r">2,6 k€</td><td class="r">39 €</td></tr><tr><td>Thibaut recruteur : « tu arrives trop tard »</td><td class="r">2,2 k€</td><td class="r"><em>29 €</em></td></tr><tr><td>Démo écran : « Les recruteurs veulent pas que tu saches ça »</td><td class="r">2,1 k€</td><td class="r">33 €</td></tr><tr><td>Yohann en podcast : « un entretien sans répondre à une seule offre »</td><td class="r">1,5 k€</td><td class="r">32 €</td></tr></table></div>
+      <div class="col"><b>À retenir</b><ul>
+        <li>Un <strong>expert crédible face caméra</strong> (Thibaut, Yohann) donne notre meilleur coût, 29 à 34 €, et porte le plus gros budget</li>
+        <li>La recette : hook « arrête de postuler comme ça », l'explication, puis <strong>la démo de l'outil à l'écran</strong></li>
+        <li>Les statiques qui comparent (avant / après, mème, faux WhatsApp) tiennent à 37-39 € avec du volume</li>
+        <li>Les <strong>seniors joués par des acteurs ne vendent pas</strong> (licencié à 48 ans : 94 €) ; le persona 1 joué : 48 €</li>
+        <li>À pousser : d'autres experts que Thibaut (Yohann n'a eu qu'une pub), faux WhatsApp « Léa » (30 € sur 579 €)</li></ul></div></div></li>
     </ul></li>
     <li><span class="n b2">MJ<span class="data"><b>444 k€</b> dépensés depuis juin 2025</span><span class="data"><b>7 460</b> achats · <b>60 €</b> par achat</span></span><ul>
       <li><span class="n">CBO France<span class="data">depuis le 22/06/2026</span><span class="data"><b>186 k€</b> · <b>4 039</b> achats · <b>46 €</b> par achat</span></span></li>
@@ -109,13 +126,25 @@ a.n.clic:hover,a.n.clic:focus-visible{border-color:var(--mj);outline:none}
   <li><span class="n b1">UGC</span><ul>
     <li><span class="n b2" id="spark">Spark<span class="data"><b>37</b> Spark Ads actuellement</span></span></li>
     <li><a class="n b2 clic" href="https://www.instagram.com/charlotte.career/" target="_blank" rel="noopener">Organique<span class="data"><b>31</b> créateurs en France</span><span class="data"><b>30,9 M</b> vues depuis le 1er août</span><span class="data go">Meilleur créateur du mois : @charlotte.career</span></a><ul>
-      <li><div class="fiche appris"><b>Ce qu'on a compris</b><ul>
-        <li>Ce qui vend : un <strong>chiffre de salaire</strong> (« job à 45k », 28,50 € l'achat), un <strong>délai</strong> (« un job en 24 h »), un <strong>contre-pied</strong> (« ce n'est pas ton CV le problème »)</li>
-        <li>Suisse et Luxembourg vendent, la Belgique non</li>
-        <li>Ce qui fait des vues sans vendre en France : le refus humiliant (« refusée pour être caissière », 218 €), « comment j'explique à mes parents »</li>
-        <li>À tester : +45 ans (1,4 M vues, jamais en pub), salaire + Suisse</li>
-        <li><a href="leviers.html" rel="noopener">Page détaillée : 13 leviers, 143 vidéos</a></li>
-      </ul></div></li>
+      <li><div class="fiche bloc"><div class="col"><b>Contexte</b><ul>
+        <li><strong>31 créateurs en France</strong>, payés au fixe + aux vues, 2 vidéos par jour sur Instagram, TikTok et Facebook, avec nos scripts</li>
+        <li><strong>30,9 M vues</strong> depuis le 1er août ; 143 vidéos ont dépassé 50 000 vues</li>
+        <li>Les meilleures passent en <strong>Spark</strong> (pub depuis le compte du créateur) : 37 Spark, 48,2 k€ sur 90 jours, 41 € l'achat</li>
+        <li>On lit les vues pour l'attention, le coût par achat en Spark pour la vente</li></ul></div>
+      <div class="col"><b>Les profils testés</b>
+        <table><tr><th>Profil</th><th class="r">Vues</th><th class="r">Spark</th></tr>
+        <tr><td>Jeunes femmes face caméra, ton « story » : Gina, Lanto, Charlotte, Anaïs, Jade, Kelly, Hélène…</td><td class="r">11,9 M</td><td class="r">22 à 48 €</td></tr><tr><td>Femme voilée : Julie</td><td class="r">0,9 M</td><td class="r">33 € *</td></tr><tr><td>Femme plus âgée : Anne</td><td class="r">0,5 M</td><td class="r">pas testée</td></tr><tr><td>Homme : Antoine, Cédric</td><td class="r">0,5 M</td><td class="r">76 €</td></tr><tr><td>Texte à l'écran / mème : Pauline (CV +45 ans), Mathou</td><td class="r">3,0 M</td><td class="r">pas testée</td></tr></table>
+        <p class="note">Vues des vidéos à plus de 50 000 vues. * Julie « Arrête de postuler » ; son « refusée pour le ménage » est à 214 €</p></div>
+      <div class="col"><b>Les scripts qui marchent</b>
+        <table><tr><th>Script · créateur</th><th class="r">Vues</th><th class="r">Spark</th></tr>
+        <tr><td>« Les sites qui m'ont fait décrocher un job à 45k » · Anaïs</td><td class="r">1,4 M *</td><td class="r"><em>28,50 €</em></td></tr><tr><td>« Si je voulais trouver un job en 24 h » · Jade, Lanto</td><td class="r">0,8 M</td><td class="r">32-41 €</td></tr><tr><td>« Ce n'est pas ton CV le problème » · Gina</td><td class="r"></td><td class="r">34 €</td></tr><tr><td>« Je postule tous les soirs depuis 6 mois » · Gina</td><td class="r">0,3 M</td><td class="r">40 €</td></tr><tr><td>« Les recruteurs en Suisse ne veulent pas que vous sachiez ça » · Julie, Gina</td><td class="r">0,5 M</td><td class="r">39 €</td></tr><tr><td>« Merci à ma conseillère France Travail » · Lanto, Jade, Elisa</td><td class="r">0,5 M</td><td class="r">56 €</td></tr><tr><td>« Supprime ça de ton CV si tu as +45 ans » · Pauline, Anne, Antoine</td><td class="r">1,4 M</td><td class="r">pas testé</td></tr><tr><td>« Refusée pour être caissière » · Charlotte, Lanto, Anne</td><td class="r">0,6 M</td><td class="r">218 €</td></tr></table>
+        <p class="note">* toutes les variantes « sites pour un job à X »</p></div>
+      <div class="col"><b>À retenir</b><ul>
+        <li>Ce qui vend en Spark : <strong>des jeunes femmes face caméra, ton naturel</strong> (Hélène 22 €, Anaïs 30 €, Jade 33 €, Gina 40 €)</li>
+        <li>Le levier compte plus que le sujet : un <strong>salaire chiffré</strong>, un <strong>délai</strong>, un <strong>contre-pied</strong> vendent ; le refus humiliant fait des vues sans vendre</li>
+        <li>Même script, résultat différent : « 45k » à 28,50 € chez Anaïs, 73 € chez Antoine</li>
+        <li>À tester en Spark : Anne et Pauline sur « +45 ans » (1,4 M vues, jamais poussé), Julie sur ses scripts qui vendent</li>
+        <li><a href="leviers.html" rel="noopener">Page détaillée : 13 leviers, 143 vidéos</a></li></ul></div></div></li>
     </ul></li>
   </ul></li>
 </ul></li></ul></section>
