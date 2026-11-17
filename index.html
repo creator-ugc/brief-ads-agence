@@ -1,0 +1,219 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style></head><body>
+<title>Carte Ads MeilleursJobs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap">
+<style>
+/* Plan de travail plein écran : on glisse pour se déplacer, molette / pincement / boutons pour zoomer. Arbre de haut en bas comme le brouillon. */
+:root{
+  --bg:#f6f5f1; --dot:#e2e0d8; --fg:#1d2420; --mute:#5d6862; --line:#9aa59f; --card:#ffffff;
+  --mj:#f5d76e; --mj-soft:#fdf3cf; --jz:#8fb8f0; --jz-soft:#e3eefc; --ink-on:#1d2420;
+  --font:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141917; --dot:#232a27; --fg:#eef1ee; --mute:#a3ada7; --line:#5b6661; --card:#1e2522;
+  --mj:#d9b84a; --mj-soft:#3a3320; --jz:#6f9ad6; --jz-soft:#1f2c3d; --ink-on:#141917; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141917; --dot:#232a27; --fg:#eef1ee; --mute:#a3ada7; --line:#5b6661; --card:#1e2522;
+  --mj:#d9b84a; --mj-soft:#3a3320; --jz:#6f9ad6; --jz-soft:#1f2c3d; --ink-on:#141917; color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);overflow:hidden}
+.vue{position:fixed;inset:0;overflow:hidden;cursor:grab;touch-action:none;
+  background-image:radial-gradient(var(--dot) 1.2px,transparent 1.2px);background-size:22px 22px}
+.vue.drag{cursor:grabbing}
+.plan{position:absolute;left:0;top:0;transform-origin:0 0;display:flex;flex-direction:column;align-items:flex-start;gap:70px;padding:40px;user-select:none;-webkit-user-select:none}
+.entete{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:max(16px,env(safe-area-inset-left,0px));z-index:2;pointer-events:none}
+h1{font-size:1.2rem;font-weight:800;margin:0}
+.sous{color:var(--mute);margin:2px 0 0;font-size:.85rem}
+.outils{position:fixed;z-index:2;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;gap:6px}
+.outils button{font:700 1rem var(--font);min-width:42px;height:42px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.outils button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.aide{position:fixed;z-index:2;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 22px);color:var(--mute);font-size:.8rem;pointer-events:none}
+.jzbloc{align-self:flex-end}
+
+.tree ul{display:flex;justify-content:center;position:relative;margin:0;padding:22px 0 0}
+.tree>ul{padding-top:0}
+.tree li{list-style:none;position:relative;padding:22px 8px 0;display:flex;flex-direction:column;align-items:center}
+.tree li::before,.tree li::after{content:"";position:absolute;top:0;right:50%;width:50%;height:22px;border-top:2px solid var(--line)}
+.tree li::after{right:auto;left:50%;border-left:2px solid var(--line)}
+.tree li:only-child::before,.tree li:only-child::after{display:none}
+.tree li:only-child{padding-top:0}
+.tree li:first-child::before,.tree li:last-child::after{border:0}
+.tree li:last-child::before{border-right:2px solid var(--line);border-radius:0 10px 0 0}
+.tree li:first-child::after{border-radius:10px 0 0 0}
+.tree ul ul::before{content:"";position:absolute;top:0;left:50%;height:22px;border-left:2px solid var(--line)}
+.tree>ul>li{padding-top:0}
+.n{display:inline-block;padding:8px 14px;border-radius:10px;background:var(--card);border:2px solid var(--line);font-weight:700;white-space:nowrap;text-align:center}
+.racine{font-size:1.5rem;font-weight:800;padding:12px 26px}
+.mj .racine,.mj .b1{background:var(--mj);border-color:var(--mj);color:var(--ink-on)}
+.jz .racine,.jz .b1{background:var(--jz);border-color:var(--jz);color:var(--ink-on)}
+.b1{font-size:1.1rem}
+.mj .b2{background:var(--mj-soft);border-color:var(--mj)}
+.jz .b2{background:var(--jz-soft);border-color:var(--jz)}
+.lien{display:block;font-size:.72rem;font-weight:500;color:var(--mute);margin-top:2px}
+.fiche{width:230px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.82rem;line-height:1.4}
+.fiche b{display:block;font-size:.9rem;margin-bottom:4px}
+.tree .fiche ul{display:block;padding:0 0 0 16px;margin:0}
+.tree .fiche ul::before{display:none}
+.tree .fiche li{display:list-item;padding:0;list-style:disc}
+.tree .fiche li::before,.tree .fiche li::after{display:none}
+.fiche.appris{width:300px}
+.fiche a{color:var(--fg);font-weight:700}
+.fiche.grande{width:auto;display:grid;grid-template-columns:repeat(3,250px);gap:18px;padding:14px 18px;font-size:.88rem}
+.data{display:block;font-size:.78rem;font-weight:500;color:var(--mute);margin-top:3px}
+.data b{color:var(--fg);font-weight:800}
+.data.manque{font-style:italic}
+a.n.clic{color:inherit;text-decoration:none;cursor:pointer}
+a.n.clic:hover,a.n.clic:focus-visible{border-color:var(--mj);outline:none}
+.data.go{color:var(--mj);font-weight:700}
+.data.go::after{content:" ↗"}
+.pont{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.pont path{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:6 5}
+@media (prefers-reduced-motion:no-preference){.plan.anim{transition:transform .25s ease}}
+</style>
+
+<div class="vue" id="vue">
+<div class="plan" id="plan">
+
+<section class="mj tree"><ul><li><span class="n racine">MeilleursJobs</span><ul>
+  <li><span class="n b1">Organique</span><ul>
+    <li><span class="n b2">CVBoost</span><ul>
+      <li><a class="n clic" href="https://www.instagram.com/cvboost.co/" target="_blank" rel="noopener">France<span class="data"><b>399 891</b> abonnés</span><span class="data"><b>6,10 M</b> vues depuis le 17/09</span><span class="data go">Voir le compte</span></a></li>
+      <li><span class="n">World</span><ul>
+        <li><a class="n clic" href="https://www.instagram.com/cvboost.us/" target="_blank" rel="noopener">🇺🇸 États-Unis<span class="data"><b>142 253</b> abonnés</span><span class="data"><b>2,84 M</b> vues depuis le 14/09</span><span class="data go">Voir le compte</span></a></li>
+        <li><a class="n clic" href="https://www.instagram.com/jobzen.es/" target="_blank" rel="noopener">🇪🇸 Espagne<span class="data"><b>99 700</b> abonnés</span><span class="data"><b>3,76 M</b> vues depuis le 14/09</span><span class="data go">Voir le compte</span></a></li>
+        <li><a class="n clic" href="https://www.instagram.com/cvboost_de/" target="_blank" rel="noopener">🇩🇪 Allemagne<span class="data"><b>18 214</b> abonnés</span><span class="data"><b>1,11 M</b> vues depuis le 14/09</span><span class="data go">Voir le compte</span></a></li>
+        <li><a class="n clic" href="https://www.instagram.com/jobzen.it/" target="_blank" rel="noopener">🇮🇹 Italie<span class="data"><b>6 327</b> abonnés</span><span class="data"><b>389 k</b> vues depuis le 14/09</span><span class="data go">Voir le compte</span></a></li>
+      </ul></li>
+    </ul></li>
+    <li><span class="n b2">Candiboost</span><ul><li><a class="n clic" href="https://www.instagram.com/candiboost.co/" target="_blank" rel="noopener">France<span class="data go">Voir le compte</span></a></li></ul></li>
+    <li><span class="n b2">Média MeilleursJobs<span class="data">Interviews de recruteurs et de professionnels</span><span class="data">de différents métiers, sur le thème de l'emploi</span></span></li>
+  </ul></li>
+  <li><span class="n b1" id="ads-mj">Ads</span><ul>
+    <li><span class="n b2">Candiboost</span><ul>
+      <li><div class="fiche grande"><div class="col"><b>Personas</b><ul>
+        <li>Premier CDI insatisfait (39 %)</li><li>Étudiant en alternance (30 %)</li><li>Manager polyvalent (27 %)</li>
+        <li>Senior commerce / RH / marketing (19 %)</li><li>Senior finance (14 %)</li><li>Senior tech / CTO (9 %)</li>
+        <li>Effort : 70 / 20 / 10</li></ul></div>
+      <div class="col"><b>Angles</b><ul>
+        <li>Tu utilises les jobboards (winner)</li><li>Tu postules aux mauvaises personnes, RH (en dépense)</li>
+        <li>Tu postules dans le vide, 0 réponse</li><li>À tester : marché caché, trop tard, filtre ATS, discrimination âge / origine</li></ul></div>
+      <div class="col"><b>Douleurs</b><ul>
+        <li>Le silence après l'effort</li><li>Bouger sans griller sa boîte</li><li>Pas le temps de chercher</li>
+        <li>La promo qui n'arrive jamais</li><li>Les potes bougent, pas moi</li></ul></div></div></li>
+    </ul></li>
+    <li><span class="n b2">MJ<span class="data"><b>444 k€</b> dépensés depuis juin 2025</span><span class="data"><b>7 460</b> achats · <b>60 €</b> par achat</span></span><ul>
+      <li><span class="n">CBO France<span class="data">depuis le 22/06/2026</span><span class="data"><b>186 k€</b> · <b>4 039</b> achats · <b>46 €</b> par achat</span></span></li>
+      <li><span class="n">Mediads · M6<span class="data">depuis le 05/11/2026</span><span class="data"><b>965 €</b> · <b>26</b> achats · <b>37 €</b> par achat</span></span></li>
+    </ul></li>
+  </ul></li>
+  <li><span class="n b1">UGC</span><ul>
+    <li><span class="n b2" id="spark">Spark<span class="data"><b>37</b> Spark Ads actuellement</span></span></li>
+    <li><a class="n b2 clic" href="https://www.instagram.com/charlotte.career/" target="_blank" rel="noopener">Organique<span class="data"><b>31</b> créateurs en France</span><span class="data"><b>30,9 M</b> vues depuis le 1er août</span><span class="data go">Meilleur créateur du mois : @charlotte.career</span></a><ul>
+      <li><div class="fiche appris"><b>Ce qu'on a compris</b><ul>
+        <li>Ce qui vend : un <strong>chiffre de salaire</strong> (« job à 45k », 28,50 € l'achat), un <strong>délai</strong> (« un job en 24 h »), un <strong>contre-pied</strong> (« ce n'est pas ton CV le problème »)</li>
+        <li>Suisse et Luxembourg vendent, la Belgique non</li>
+        <li>Ce qui fait des vues sans vendre en France : le refus humiliant (« refusée pour être caissière », 218 €), « comment j'explique à mes parents »</li>
+        <li>À tester : +45 ans (1,4 M vues, jamais en pub), salaire + Suisse</li>
+        <li><a href="leviers.html" rel="noopener">Page détaillée : 13 leviers, 143 vidéos</a></li>
+      </ul></div></li>
+    </ul></li>
+  </ul></li>
+</ul></li></ul></section>
+
+<section class="jz tree jzbloc"><ul><li><span class="n racine">Jobzen</span><ul>
+  <li><span class="n b1" id="ugc-jz">UGC</span><ul>
+    <li><span class="n b2">Organique</span><ul>
+      <li><a class="n clic" href="https://www.instagram.com/carlos.crc._/" target="_blank" rel="noopener">🇪🇸 Espagne<span class="data"><b>18</b> UGC · hier <b>550 k</b></span><span class="data">mois <b>6,17 M</b></span><span class="data go">Meilleur créateur du mois : @carlos.crc._</span></a></li>
+      <li><a class="n clic" href="https://www.instagram.com/clarissa.bnm/" target="_blank" rel="noopener">🇮🇹 Italie<span class="data"><b>14</b> UGC · hier <b>292 k</b></span><span class="data">mois <b>4,3 M</b></span><span class="data go">Meilleur créateur du mois : @clarissa.bnm</span></a></li>
+      <li><a class="n clic" href="https://www.instagram.com/lala.wkm/" target="_blank" rel="noopener">🇩🇪 Allemagne<span class="data"><b>22</b> UGC · hier <b>104 k</b></span><span class="data">mois <b>1,46 M</b></span><span class="data go">Meilleur créateur du mois : @lala.wkm</span></a></li>
+      <li><a class="n clic" href="https://www.instagram.com/maria.plch/" target="_blank" rel="noopener">🇬🇧 Royaume-Uni<span class="data"><b>9</b> UGC · hier <b>9 011</b></span><span class="data">mois <b>102 k</b></span><span class="data go">Meilleur créateur du mois : @maria.plch</span></a></li>
+    </ul></li>
+  </ul></li>
+  <li><span class="n b1">Ads</span><ul>
+    <li><span class="n b2" id="spark-jz">Spark / Partnership<span class="data"><b>33</b> Spark Ads actuellement</span></span></li>
+    <li><span class="n b2">Ads<span class="data"><b>25,8 k€</b> dépensés depuis juillet 2026</span><span class="data"><b>595</b> achats · <b>43 €</b> par achat</span></span><ul>
+      <li><span class="n">🇮🇹 Italie<span class="data"><b>9,2 k€</b> · <b>318</b> achats</span><span class="data"><b>29 €</b> par achat</span></span></li>
+      <li><span class="n">🇪🇸 Espagne<span class="data"><b>11,4 k€</b> · <b>233</b> achats</span><span class="data"><b>49 €</b> par achat</span></span></li>
+      <li><span class="n">🇬🇧 Royaume-Uni<span class="data"><b>4,0 k€</b> · <b>35</b> achats</span><span class="data"><b>115 €</b> par achat</span></span></li>
+      <li><span class="n">🇩🇪 Allemagne<span class="data"><b>1,2 k€</b> · <b>9</b> achats</span><span class="data"><b>136 €</b> par achat</span></span></li>
+    </ul></li>
+  </ul></li>
+</ul></li></ul></section>
+
+</div>
+</div>
+
+<div class="entete"><h1>Carte Ads MeilleursJobs</h1><p class="sous">Ce qu'on a déjà fait · chiffres Meta Ads au 17/11/2026 (achats attribués par Meta)</p></div>
+<p class="aide">Glisse pour te déplacer · molette ou pincement pour zoomer</p>
+<div class="outils">
+  <button type="button" id="moins" aria-label="Dézoomer">−</button>
+  <button type="button" id="plus" aria-label="Zoomer">+</button>
+  <button type="button" id="tout">Tout voir</button>
+</div>
+
+<script>
+(function(){
+  const vue=document.getElementById('vue'), plan=document.getElementById('plan');
+  let s=1,x=0,y=0;
+  const MIN=.2,MAX=3;
+  const appliquer=()=>{plan.style.transform=`translate(${x}px,${y}px) scale(${s})`};
+  function zoomEn(f,cx,cy,anim){
+    const ns=Math.min(MAX,Math.max(MIN,s*f)); f=ns/s;
+    x=cx-(cx-x)*f; y=cy-(cy-y)*f; s=ns;
+    plan.classList.toggle('anim',!!anim); appliquer();
+  }
+  function toutVoir(anim){
+    const r=vue.getBoundingClientRect(), w=plan.offsetWidth, h=plan.offsetHeight;
+    const haut=70, bas=70;
+    s=Math.min(MAX,Math.max(MIN,Math.min(r.width/w,(r.height-haut-bas)/h)));
+    x=(r.width-w*s)/2; y=haut+((r.height-haut-bas)-h*s)/2;
+    plan.classList.toggle('anim',!!anim); appliquer();
+  }
+  // Glisser (souris, doigt) et pincement à deux doigts
+  const pts=new Map(); let dist0=0, s0=1, lastMid=null;
+  let bouge=0;vue.addEventListener('click',e=>{if(bouge>6&&e.target.closest('a'))e.preventDefault();},true);
+  vue.addEventListener('pointerdown',e=>{bouge=0;if(!e.target.closest('a'))vue.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});vue.classList.add('drag');plan.classList.remove('anim');
+    if(pts.size===2){const [a,b]=[...pts.values()];dist0=Math.hypot(a.x-b.x,a.y-b.y);s0=s;lastMid={x:(a.x+b.x)/2,y:(a.y+b.y)/2};}});
+  vue.addEventListener('pointermove',e=>{
+    if(!pts.has(e.pointerId))return;
+    const p=pts.get(e.pointerId), dx=e.clientX-p.x, dy=e.clientY-p.y; bouge+=Math.abs(dx)+Math.abs(dy);
+    pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pts.size===1){x+=dx;y+=dy;appliquer();}
+    else if(pts.size===2){
+      const [a,b]=[...pts.values()], d=Math.hypot(a.x-b.x,a.y-b.y), mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2};
+      const r=vue.getBoundingClientRect();
+      x+=mid.x-lastMid.x; y+=mid.y-lastMid.y; lastMid=mid;
+      if(dist0>0) zoomEn((s0*d/dist0)/s, mid.x-r.left, mid.y-r.top);
+    }});
+  const fin=e=>{pts.delete(e.pointerId);if(!pts.size)vue.classList.remove('drag');if(pts.size<2)dist0=0;};
+  vue.addEventListener('pointerup',fin); vue.addEventListener('pointercancel',fin);
+  vue.addEventListener('wheel',e=>{e.preventDefault();const r=vue.getBoundingClientRect();
+    if(e.ctrlKey||Math.abs(e.deltaY)>=Math.abs(e.deltaX)) zoomEn(Math.exp(-e.deltaY*(e.ctrlKey?.01:.0015)),e.clientX-r.left,e.clientY-r.top);
+    else {x-=e.deltaX;appliquer();}},{passive:false});
+  const centre=()=>{const r=vue.getBoundingClientRect();return [r.width/2,r.height/2]};
+  document.getElementById('plus').onclick=()=>zoomEn(1.25,...centre(),true);
+  document.getElementById('moins').onclick=()=>zoomEn(.8,...centre(),true);
+  document.getElementById('tout').onclick=()=>toutVoir(true);
+  document.addEventListener('keydown',e=>{if(e.key==='+'||e.key==='=')zoomEn(1.25,...centre(),true);else if(e.key==='-')zoomEn(.8,...centre(),true);else if(e.key==='0')toutVoir(true);});
+  // Ponts : Ads MJ → Spark (UGC) et UGC Jobzen → Spark / Partnership (Ads)
+  const PONTS=[['ads-mj','spark','right'],['ugc-jz','spark-jz','right']];
+  function pont(){
+    let svg=plan.querySelector('svg.pont');
+    if(!svg){svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','pont');plan.appendChild(svg);}
+    svg.setAttribute('width',plan.offsetWidth);svg.setAttribute('height',plan.offsetHeight);
+    const p=plan.getBoundingClientRect(), k=1/s;
+    svg.innerHTML=PONTS.map(([ia,ib])=>{
+      const a=document.getElementById(ia), b=document.getElementById(ib); if(!a||!b)return '';
+      const ra=a.getBoundingClientRect(), rb=b.getBoundingClientRect();
+      const cb=rb.left+rb.width/2, droite=cb>ra.left+ra.width/2;
+      const x1=((droite?ra.right:ra.left)-p.left)*k, y1=(ra.top+ra.height/2-p.top)*k, x2=(cb-p.left)*k, y2=(rb.top-p.top)*k;
+      return `<path d="M${x1},${y1} C${x2},${y1} ${x2},${y1} ${x2},${y2-2}"/>`;
+    }).join('');
+  }
+  toutVoir(false); pont();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{toutVoir(false);pont();});
+  window.addEventListener('resize',()=>toutVoir(false));
+})();
+</script>
+
+</body></html>
